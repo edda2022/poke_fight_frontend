@@ -1,10 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function PokemonPage({ capitalizeFirstLetter }) {
   const { name } = useParams();
   const navigate = useNavigate();
+  const [isClicked, setIsClicked] = useState(false);
 
   const [pokemonDetail, setPokemonDetail] = useState({
     sprites: {
@@ -23,6 +25,9 @@ export default function PokemonPage({ capitalizeFirstLetter }) {
       });
   }, []);
 
+  const handleClick = () => {
+    setIsClicked(!isClicked);
+  };
   return (
     <>
       <div className="card w-50 pokemoncarddiv mx-auto">
@@ -41,26 +46,36 @@ export default function PokemonPage({ capitalizeFirstLetter }) {
               <p>National Pokedex Number: {pokemonDetail.id}</p>
               <p className="card-text">Height: {pokemonDetail.height}</p>
               <p className="card-text">Weight: {pokemonDetail.weight}</p>
-              <p>
-                Statistic:
-                {pokemonDetail.stats?.map((stat) => {
-                  return (
-                    <div>
-                      {capitalizeFirstLetter(stat.stat.name)}: {stat.base_stat}
-                    </div>
-                  );
-                })}
-              </p>
-              <p>
-                Types:
-                {pokemonDetail.types?.map((type) => {
-                  return <div>{capitalizeFirstLetter(type.type.name)}</div>;
-                })}
-              </p>
+              <button
+                onClick={handleClick}
+                className="btn-outline-secondary btn btn-light btn-sm pokemonbutton mb-3"
+              >
+                View Statistic
+              </button>
+              {isClicked && (
+                <div>
+                  {pokemonDetail.stats?.map((stat, index) => {
+                    return (
+                      <p key={stat.stat.url}>
+                        {capitalizeFirstLetter(stat.stat.name)}:{" "}
+                        {stat.base_stat}
+                      </p>
+                    );
+                  })}
+                </div>
+              )}
+              <div>
+                <Link to={`/pokemon/${pokemonDetail.name}/types`}>
+                  <button className="btn-outline-secondary btn btn-light btn-sm pokemonbutton">
+                    View Types
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
       <div className="backbuttondiv">
         <button
           onClick={() => {
