@@ -16,7 +16,7 @@ export default function PokemonPage({ capitalizeFirstLetter }) {
 
   useEffect(() => {
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+      .get(`http://localhost:8082/pokemon/${name}`)
       .then((response) => {
         setPokemonDetail(response.data);
       })
