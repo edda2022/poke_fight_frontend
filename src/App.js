@@ -44,7 +44,7 @@ function App() {
               <PokemonInfo capitalizeFirstLetter={capitalizeFirstLetter} />
             }
           ></Route>
-          <Route path="/pokefight" element= {<PokeFight capitalizeFirstLetter={capitalizeFirstLetter} setPlayerA={setPlayerA} playerA={playerA} setPlayerB={setPlayerB} playerB={playerB}/>}></Route>
+          <Route path="/pokefight" element= {<PokeFight capitalizeFirstLetter={capitalizeFirstLetter} playerA={playerA} playerB={playerB}/>}></Route>
           <Route path="/berries" element={<Berries />}></Route>
         </Routes>
       </div>

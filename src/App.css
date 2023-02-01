@@ -51,8 +51,6 @@
   margin-bottom: 15px;
 }
 
-
-
 .pokemoncard {
   justify-content: center;    
   align-items: center;
@@ -62,8 +60,6 @@
   display: flex;
   justify-content: center;
 }
-
-
 
 .errorpage {
   min-height: 60vh;
@@ -75,4 +71,19 @@ a.page-link  {
 
 .pagination {
   gap: 4px;
+}
+
+.pokefight {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.playerA,
+.playerB {
+  border-style: solid;
+  width: 25rem;
+  min-height: 25rem;
 }
