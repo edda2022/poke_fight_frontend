@@ -7,7 +7,15 @@ import Berries from "./components/Berries";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import PokemonInfo from "./components/PokemonInfo";
+import PokeFight from "./components/PokeFight";
+import { useState } from "react";
+
 function App() {
+
+  const [playerA, setPlayerA] = useState('')
+  const [playerB, setPlayerB] = useState('')
+
+
   function capitalizeFirstLetter(i) {
     return i?.charAt(0).toUpperCase() + i?.slice(1);
   }
@@ -27,7 +35,7 @@ function App() {
           <Route
             path="/pokemon/:name"
             element={
-              <PokemonPage capitalizeFirstLetter={capitalizeFirstLetter} />
+              <PokemonPage capitalizeFirstLetter={capitalizeFirstLetter} setPlayerA={setPlayerA} playerA={playerA} setPlayerB={setPlayerB} playerB={playerB}/>
             }
           ></Route>
           <Route
@@ -36,6 +44,7 @@ function App() {
               <PokemonInfo capitalizeFirstLetter={capitalizeFirstLetter} />
             }
           ></Route>
+          <Route path="/pokefight" element= {<PokeFight capitalizeFirstLetter={capitalizeFirstLetter} setPlayerA={setPlayerA} playerA={playerA} setPlayerB={setPlayerB} playerB={playerB}/>}></Route>
           <Route path="/berries" element={<Berries />}></Route>
         </Routes>
       </div>

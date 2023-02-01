@@ -44,9 +44,7 @@ export default function PokemonList({ capitalizeFirstLetter }) {
       })
       .catch((err) => {
         console.log(err);
-        console.log(errorSearch);
         setErrorSearch(true);
-        console.log(errorSearch);
       })
       .finally(() => {
         setInputSearch("");

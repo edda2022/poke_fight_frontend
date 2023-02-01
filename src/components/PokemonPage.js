@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export default function PokemonPage({ capitalizeFirstLetter }) {
+export default function PokemonPage({ capitalizeFirstLetter, setPlayerA, setPlayerB}) {
   const { name } = useParams();
   const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
@@ -28,6 +28,16 @@ export default function PokemonPage({ capitalizeFirstLetter }) {
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
+
+  const clickPlayerA = (e) => {
+    setPlayerA(e.target.value)
+  }
+
+  const clickPlayerB = (e) => {
+    setPlayerB(e.target.value)
+  }
+
+
   return (
     <>
       <div className="card w-50 pokemoncarddiv mx-auto">
@@ -68,6 +78,20 @@ export default function PokemonPage({ capitalizeFirstLetter }) {
                 <Link to={`/pokemon/${pokemonDetail.name}/types`}>
                   <button className="btn-outline-secondary btn btn-light btn-sm pokemonbutton">
                     View Types
+                  </button>
+                </Link>
+              </div>
+              <div>
+                <Link to={`/pokefight`}>
+                  <button onClick={clickPlayerA} value={pokemonDetail.name} className="btn-outline-secondary btn btn-light btn-sm pokemonbutton">
+                    Select {pokemonDetail.name} for fight player 1
+                  </button>
+                </Link>
+              </div>
+              <div>
+                <Link to={`/pokefight`}>
+                  <button  onClick={clickPlayerB} value={pokemonDetail.name} className="btn-outline-secondary btn btn-light btn-sm pokemonbutton">
+                    Select {pokemonDetail.name} for fight player 2
                   </button>
                 </Link>
               </div>
