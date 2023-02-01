@@ -1,20 +1,22 @@
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
+import {useState} from 'react';
 
 export default function Pagination ({setPokemons, totalCount}) {
 
+    const [offset, setOffset] = useState(0)
 
-    const offset = 20
-    const pageCount = Math.ceil(totalCount/offset)
+    const pageCount = Math.ceil(totalCount/20)
     // to calculate the needed number of pages 
     // pageCount will be set as an attribute in the return
 
     const fetchNewPage = (offset) => {
     axios
-    .get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`)
+    .get(`http://localhost:8082/pokemon?offset=${offset}&limit=20`)
     .then((response) => {
         setPokemons(response.data.results)
         console.log(response.data.results) // pagination: response.data.results = items
+        console.log(offset)
 
     })
     .catch((err) => {
@@ -24,7 +26,7 @@ export default function Pagination ({setPokemons, totalCount}) {
 
     const handlePageClick = (data) => {
         console.log(data.selected) // prints the page -1 
-        let offset = (data.selected+1) * 20 // offset = 20 -> multiple page number = new offset
+        let offset = (data.selected) * 20 // offset = 20 -> multiple page number = new offset
         console.log(offset)
         fetchNewPage(offset)
     }
