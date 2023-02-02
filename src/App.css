@@ -1,20 +1,24 @@
 /* Searchbar */
 
-.searchbar {
+.search-bar {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
+  gap: 10px;
+}
+.search-bar input {
+  width: 30rem;
+  border-radius: 5px;
+  padding: 7px;
+  border: 1px solid rgb(194, 191, 191);
 }
 
-.searchform {
-  width: 60%;
-  gap: 2em;
-}
 
 /* main */
 
-
 .main {
-  padding: 3rem;
+  padding: 3rem 2rem;
   background-color: rgba(226, 208, 178, 0.209);
   display: flex;
   flex-direction: column;
@@ -39,7 +43,7 @@
 
 .pokemon {
   padding: 1rem;
-  width: 15%;
+  /* width: 15%; */
   border-style: solid;
   border-radius: 7px;
   border-width: 1px;

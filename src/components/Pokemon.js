@@ -6,7 +6,7 @@ export default function Pokemon({ pokemon, capitalizeFirstLetter }) {
       <div className="pokemonname">{capitalizeFirstLetter(pokemon.name)}</div>
       <div className="pokemonbuttondiv">
         <Link to={`/pokemon/${pokemon.name}`}>
-          <button className="btn-outline-secondary btn btn-light btn-sm pokemonbutton">
+          <button className="btn-outline-secondary btn btn-light btn-sm pokemonbutton p-1">
             View Details
           </button>
         </Link>
