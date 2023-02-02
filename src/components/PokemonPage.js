@@ -3,7 +3,13 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export default function PokemonPage({ capitalizeFirstLetter, setPlayerA, setPlayerB}) {
+export default function PokemonPage({
+  capitalizeFirstLetter,
+  setPlayerA,
+  setPlayerB,
+  playerA,
+  playerB,
+}) {
   const { name } = useParams();
   const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
@@ -30,14 +36,21 @@ export default function PokemonPage({ capitalizeFirstLetter, setPlayerA, setPlay
   };
 
   const clickPlayerA = (e) => {
-    setPlayerA(e.target.value)
-  }
+    setPlayerA(e.target.value);
+  };
 
   const clickPlayerB = (e) => {
-    setPlayerB(e.target.value)
-  }
+    if (playerA === e.target.value) {
+      alert("You can't play against yourself. Please choose another Pokémon!");
+    } else {
+      setPlayerB(e.target.value);
+    }
+  };
 
-
+  const resetGame = () => {
+    setPlayerA("");
+    setPlayerB("");
+  };
   return (
     <>
       <div className="card w-50 pokemoncarddiv mx-auto">
@@ -58,7 +71,7 @@ export default function PokemonPage({ capitalizeFirstLetter, setPlayerA, setPlay
               <p className="card-text">Weight: {pokemonDetail.weight}</p>
               <button
                 onClick={handleClick}
-                className="btn-outline-secondary btn btn-light btn-sm pokemonbutton mb-3"
+                className="btn-outline-secondary btn btn-light btn-sm mb-3"
               >
                 View Statistic
               </button>
@@ -76,25 +89,44 @@ export default function PokemonPage({ capitalizeFirstLetter, setPlayerA, setPlay
               )}
               <div>
                 <Link to={`/pokemon/${pokemonDetail.name}/types`}>
-                  <button className="btn-outline-secondary btn btn-light btn-sm pokemonbutton">
+                  <button className="btn-outline-secondary btn btn-light btn-sm pokemonbutton mb-3 ">
                     View Types
                   </button>
                 </Link>
               </div>
-              <div>
-                <Link to={`/pokefight`}>
-                  <button onClick={clickPlayerA} value={pokemonDetail.name} className="btn-outline-secondary btn btn-light btn-sm pokemonbutton">
-                    Select {pokemonDetail.name} for fight player 1
-                  </button>
-                </Link>
-              </div>
-              <div>
-                <Link to={`/pokefight`}>
-                  <button  onClick={clickPlayerB} value={pokemonDetail.name} className="btn-outline-secondary btn btn-light btn-sm pokemonbutton">
-                    Select {pokemonDetail.name} for fight player 2
-                  </button>
-                </Link>
-              </div>
+              {playerA === "" && (
+                <div>
+                  <Link to={`/pokefight`}>
+                    <button
+                      onClick={clickPlayerA}
+                      value={pokemonDetail.name}
+                      className="btn-outline-secondary btn btn-light btn-sm mb-3"
+                    >
+                      Select {pokemonDetail.name} for fight player 1
+                    </button>
+                  </Link>
+                </div>
+              )}
+
+              {playerA !== "" && playerB === "" && (
+                <div>
+                  <Link to={`/pokefight`}>
+                    <button
+                      onClick={clickPlayerB}
+                      value={pokemonDetail.name}
+                      className="btn-outline-secondary btn btn-light btn-sm"
+                    >
+                      Select {pokemonDetail.name} for fight player 2
+                    </button>
+                  </Link>
+                </div>
+              )}
+              <button
+                className="btn-outline-secondary btn btn-light btn-sm pokemonbutton"
+                onClick={resetGame}
+              >
+                Reset game
+              </button>
             </div>
           </div>
         </div>
