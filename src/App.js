@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import PokemonInfo from "./components/PokemonInfo";
 import PokeFight from "./components/PokeFight";
+import Fightresult from "./components/Fightresult";
 import { useState } from "react";
 
 function App() {
@@ -57,6 +58,13 @@ function App() {
                 playerB={playerB}
                 setPlayerA={setPlayerA}
                 setPlayerB={setPlayerB}
+              />
+            }
+          ></Route>
+             <Route
+            path="/pokefight/fightresult"
+            element={
+              <Fightresult
               />
             }
           ></Route>

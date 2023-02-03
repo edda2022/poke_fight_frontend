@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import Fightresult from "./Fightresult";
+
 
 export default function PokeFight({
   capitalizeFirstLetter,
@@ -22,6 +24,8 @@ export default function PokeFight({
 
   const [scorePlayerA, setScorePlayerA] = useState(0);
   const [scorePlayerB, setScorePlayerB] = useState(0);
+  
+  const navigate = useNavigate()
 
 
   useEffect(() => {
@@ -47,13 +51,26 @@ export default function PokeFight({
   }, []);
 
   const fight = () => {
-    if (firstPokemon.weight > secondPokemon.weight) {
-      setScorePlayerA(scorePlayerA+1);
-    } else if (firstPokemon.weight < secondPokemon.weight) {
-      setScorePlayerB(scorePlayerB+1);
+    if (playerA && playerB) {
+      if (firstPokemon.weight > secondPokemon.weight) {
+        setScorePlayerA(scorePlayerA+1);
+        console.log(scorePlayerA)
+        // navigate('/pokefight/fightresult');
+
+      } else if (firstPokemon.weight < secondPokemon.weight) {
+        setScorePlayerB(scorePlayerB+1);
+        // navigate('/pokefight/fightresult');
+
+      } else {
+        alert('no one won')
+        // navigate('/pokefight/fightresult');
+
+      }
     } else {
-      alert('no one won')
+      alert('Please choose 2 Pokemons')
     }
+
+
   };
 
 
@@ -170,14 +187,15 @@ export default function PokeFight({
 
         </div>
       </div>
-       <div className="buttongroupfight">      
+       <div className="buttongroupfight">   
+       
       <button
         onClick={fight}
         type="button"
-        className="btn btn-danger btn-lg mb-3 fightbutton"
-      >
-        FIGHT!
+        className="btn btn-danger btn-lg mb-3 fightbutton">
+       FIGHT!
       </button>
+
       <button
         className="btn-outline-secondary btn btn-light btn-sm playagainbutton"
         onClick={resetGameBtn}
@@ -185,6 +203,9 @@ export default function PokeFight({
         Play Again!
       </button>
       </div> 
+      <div className="disableds">
+        <Fightresult scorePlayerA={scorePlayerA} scorePlayerB={scorePlayerB} playerA={playerA} playerB={playerB}/>
+      </div>
     </>
   );
 }
