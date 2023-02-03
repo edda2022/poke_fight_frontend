@@ -3,13 +3,16 @@ import axios from "axios";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Fightresult from "./Fightresult";
 
-
 export default function PokeFight({
   capitalizeFirstLetter,
   playerA,
   playerB,
   setPlayerA,
   setPlayerB,
+  scorePlayerA,
+  scorePlayerB,
+  setScorePlayerA,
+  setScorePlayerB,
 }) {
   const [firstPokemon, setFirstPokemon] = useState({
     sprites: {
@@ -22,11 +25,7 @@ export default function PokeFight({
     },
   });
 
-  const [scorePlayerA, setScorePlayerA] = useState(0);
-  const [scorePlayerB, setScorePlayerB] = useState(0);
-  
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -53,30 +52,21 @@ export default function PokeFight({
   const fight = () => {
     if (playerA && playerB) {
       if (firstPokemon.weight > secondPokemon.weight) {
-        setScorePlayerA(scorePlayerA+1);
-        console.log(scorePlayerA)
-        // navigate('/pokefight/fightresult');
-
+        setScorePlayerA(scorePlayerA + 1);
+        setPlayerB("");
+        navigate("/pokefight/fightresult");
       } else if (firstPokemon.weight < secondPokemon.weight) {
-        setScorePlayerB(scorePlayerB+1);
-        // navigate('/pokefight/fightresult');
-
+        setScorePlayerB(scorePlayerB + 1);
+        setPlayerA("");
+        navigate("/pokefight/fightresult");
       } else {
-        alert('no one won')
-        // navigate('/pokefight/fightresult');
-
+        alert("no one won");
+        navigate("/pokefight/fightresult");
       }
     } else {
-      alert('Please choose 2 Pokemons')
+      alert("Please choose 2 Pokemons");
     }
-
-
   };
-
-
-
-
-
   const resetGameBtn = () => {
     setFirstPokemon("");
     setSecondPokemon("");
@@ -93,7 +83,7 @@ export default function PokeFight({
       </div>
       <div className="pokefight">
         <div className="card playerA">
-        <h5 className="card-title">{capitalizeFirstLetter(playerA)}</h5>
+          <h5 className="card-title">{capitalizeFirstLetter(playerA)}</h5>
           <img
             src={firstPokemon.sprites?.front_default}
             className="img-fluid rounded-start"
@@ -112,35 +102,30 @@ export default function PokeFight({
             )}
           </div>
           <div className={`fightdetails ${playerA ? "" : "disabled"}`}>
-          <div>Height: {firstPokemon.height}</div>
-          <div>Weight: {firstPokemon.weight}</div>
-          <div>Stats: {firstPokemon.stats?.map((stat, index) => {
-                    return (
-                      <div key={stat.stat.url}>
-                        {capitalizeFirstLetter(stat.stat.name)}:{" "}
-                        {stat.base_stat}
-                      </div>
-                    );
-                  })}
-                  
-          </div>
-          <div>Types: {firstPokemon.types?.map((type) => {
-                    return (
-                      <div key={type.slot}>
-                        {type.type.name}
-                      </div>
-                    );
-                  })}
-
-          </div>
-          <div className="score">
-            score={scorePlayerA}
-          </div>
+            <div>Height: {firstPokemon.height}</div>
+            <div>Weight: {firstPokemon.weight}</div>
+            <div>
+              Stats:{" "}
+              {firstPokemon.stats?.map((stat, index) => {
+                return (
+                  <div key={stat.stat.url}>
+                    {capitalizeFirstLetter(stat.stat.name)}: {stat.base_stat}
+                  </div>
+                );
+              })}
+            </div>
+            <div>
+              Types:{" "}
+              {firstPokemon.types?.map((type) => {
+                return <div key={type.slot}>{type.type.name}</div>;
+              })}
+            </div>
+            <div className="score">score={scorePlayerA}</div>
           </div>
         </div>
 
         <div className="card playerB">
-        <h5 className="card-title">{capitalizeFirstLetter(playerB)}</h5>
+          <h5 className="card-title">{capitalizeFirstLetter(playerB)}</h5>
           <img
             src={secondPokemon.sprites?.front_default}
             className="img-fluid rounded-start"
@@ -159,52 +144,43 @@ export default function PokeFight({
             )}
           </div>
           <div className={`fightdetails ${playerA ? "" : "disabled"}`}>
-          <div>Height: {secondPokemon.height}</div>
-          <div>Weight: {secondPokemon.weight}</div>
-          <div>Stats: {secondPokemon.stats?.map((stat, index) => {
-                    return (
-                      <div key={stat.stat.url}>
-                        {capitalizeFirstLetter(stat.stat.name)}:{" "}
-                        {stat.base_stat}
-                      </div>
-                    );
-                  })}
-                  
+            <div>Height: {secondPokemon.height}</div>
+            <div>Weight: {secondPokemon.weight}</div>
+            <div>
+              Stats:{" "}
+              {secondPokemon.stats?.map((stat, index) => {
+                return (
+                  <div key={stat.stat.url}>
+                    {capitalizeFirstLetter(stat.stat.name)}: {stat.base_stat}
+                  </div>
+                );
+              })}
+            </div>
+            <div>
+              Types:{" "}
+              {secondPokemon.types?.map((type) => {
+                return <div key={type.slot}>{type.type.name}</div>;
+              })}
+            </div>
+            <div className="score">score={scorePlayerB}</div>
           </div>
-          <div>Types: {secondPokemon.types?.map((type) => {
-                    return (
-                      <div key={type.slot}>
-                        {type.type.name}
-                      </div>
-                    );
-                  })}
-
-          </div>
-          <div className="score">
-            score={scorePlayerB}
-          </div>
-          </div>
-
         </div>
       </div>
-       <div className="buttongroupfight">   
-       
-      <button
-        onClick={fight}
-        type="button"
-        className="btn btn-danger btn-lg mb-3 fightbutton">
-       FIGHT!
-      </button>
+      <div className="buttongroupfight">
+        <button
+          onClick={fight}
+          type="button"
+          className="btn btn-danger btn-lg mb-3 fightbutton"
+        >
+          FIGHT!
+        </button>
 
-      <button
-        className="btn-outline-secondary btn btn-light btn-sm playagainbutton"
-        onClick={resetGameBtn}
-      >
-        Play Again!
-      </button>
-      </div> 
-      <div className="disableds">
-        <Fightresult scorePlayerA={scorePlayerA} scorePlayerB={scorePlayerB} playerA={playerA} playerB={playerB}/>
+        <button
+          className="btn-outline-secondary btn btn-light btn-sm playagainbutton"
+          onClick={resetGameBtn}
+        >
+          Play Again!
+        </button>
       </div>
     </>
   );
