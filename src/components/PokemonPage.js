@@ -53,40 +53,63 @@ export default function PokemonPage({
   };
   return (
     <>
-      <div className="card w-50 pokemoncarddiv mx-auto">
+      <div className="card pokemoncarddiv mx-auto">
         <div className="row g-2 mb-4 pokemoncard  ">
-          <div className="col-md-3">
+          <div className="col-md-4">
             <img
               src={pokemonDetail.sprites.front_default}
-              className="img-fluid rounded-start"
+              className="img-fluid rounded-start pokepicPokepage"
               alt={capitalizeFirstLetter(name)}
             ></img>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-4">
             <div className="card-body">
-              <h3 className="card-title mb-4">{capitalizeFirstLetter(name)}</h3>
-              <p>Name: {capitalizeFirstLetter(pokemonDetail.name)}</p>
-              <p>National Pokedex Number: {pokemonDetail.id}</p>
-              <p className="card-text">Height: {pokemonDetail.height}</p>
-              <p className="card-text">Weight: {pokemonDetail.weight}</p>
-              <button
-                onClick={handleClick}
-                className="btn-outline-secondary btn btn-light btn-sm mb-3"
-              >
-                View Statistic
-              </button>
-              {isClicked && (
-                <div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">
+                      {capitalizeFirstLetter(pokemonDetail.name)}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">National Pokedex Number</th>
+                    <td>{pokemonDetail.id}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Height</th>
+                    <td>{pokemonDetail.height}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Weight</th>
+                    <td>{pokemonDetail.weight}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Statistics:</th>
+                    <td></td>
+                  </tr>
                   {pokemonDetail.stats?.map((stat, index) => {
                     return (
-                      <p key={stat.stat.url}>
-                        {capitalizeFirstLetter(stat.stat.name)}:{" "}
-                        {stat.base_stat}
-                      </p>
+                      <tr>
+                        <th scope="row">
+                          {capitalizeFirstLetter(stat.stat.name)}
+                        </th>
+                        <td>{stat.base_stat}</td>
+                      </tr>
                     );
                   })}
-                </div>
-              )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="card-body">
               <div>
                 <Link to={`/pokemon/${pokemonDetail.name}/types`}>
                   <button className="btn-outline-secondary btn btn-light btn-sm pokemonbutton mb-3 ">
@@ -102,7 +125,8 @@ export default function PokemonPage({
                       value={pokemonDetail.name}
                       className="btn-outline-secondary btn btn-light btn-sm mb-3"
                     >
-                      Select {pokemonDetail.name} for fight player 1
+                      Select {capitalizeFirstLetter(pokemonDetail.name)} as YOUR
+                      Pokémon
                     </button>
                   </Link>
                 </div>
@@ -122,7 +146,7 @@ export default function PokemonPage({
                 </div>
               )}
               <button
-                className="btn-outline-secondary btn btn-light btn-sm pokemonbutton"
+                className="btn btn-m btn-secondary btn-outline-warning"
                 onClick={resetGame}
               >
                 Reset game
