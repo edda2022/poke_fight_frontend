@@ -100,27 +100,27 @@ export default function PokeFight({
                 </Link>
               </div>
             )}
-          </div>
-          <div className={`fightdetails ${playerA ? "" : "disabled"}`}>
-            <div>Height: {firstPokemon.height}</div>
-            <div>Weight: {firstPokemon.weight}</div>
-            <div>
-              Stats:{" "}
-              {firstPokemon.stats?.map((stat, index) => {
-                return (
-                  <div key={stat.stat.url}>
-                    {capitalizeFirstLetter(stat.stat.name)}: {stat.base_stat}
-                  </div>
-                );
-              })}
+            <div className={`fightdetails ${playerA ? "" : "disabled"}`}>
+              <div>Height: {firstPokemon.height}</div>
+              <div>Weight: {firstPokemon.weight}</div>
+              <div>
+                Stats:{" "}
+                {firstPokemon.stats?.map((stat, index) => {
+                  return (
+                    <div key={stat.stat.url}>
+                      {capitalizeFirstLetter(stat.stat.name)}: {stat.base_stat}
+                    </div>
+                  );
+                })}
+              </div>
+              <div>
+                Types:{" "}
+                {firstPokemon.types?.map((type) => {
+                  return <div key={type.slot}>{type.type.name}</div>;
+                })}
+              </div>
+              <div className="score">score={scorePlayerA}</div>
             </div>
-            <div>
-              Types:{" "}
-              {firstPokemon.types?.map((type) => {
-                return <div key={type.slot}>{type.type.name}</div>;
-              })}
-            </div>
-            <div className="score">score={scorePlayerA}</div>
           </div>
         </div>
 
@@ -179,7 +179,7 @@ export default function PokeFight({
           className="btn-outline-secondary btn btn-light btn-sm playagainbutton"
           onClick={resetGameBtn}
         >
-          Play Again!
+          Reset both Players
         </button>
       </div>
     </>

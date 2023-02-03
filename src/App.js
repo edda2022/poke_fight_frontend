@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import PokemonInfo from "./components/PokemonInfo";
 import PokeFight from "./components/PokeFight";
 import Fightresult from "./components/Fightresult";
+import Navbar from "./components/Navbar"
 import { useState } from "react";
 
 function App() {
