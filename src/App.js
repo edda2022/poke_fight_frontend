@@ -14,6 +14,8 @@ import { useState } from "react";
 function App() {
   const [playerA, setPlayerA] = useState("");
   const [playerB, setPlayerB] = useState("");
+  const [scorePlayerA, setScorePlayerA] = useState(0);
+  const [scorePlayerB, setScorePlayerB] = useState(0);
 
   function capitalizeFirstLetter(i) {
     return i?.charAt(0).toUpperCase() + i?.slice(1);
@@ -58,13 +60,24 @@ function App() {
                 playerB={playerB}
                 setPlayerA={setPlayerA}
                 setPlayerB={setPlayerB}
+                scorePlayerA={scorePlayerA}
+                scorePlayerB={scorePlayerB}
+                setScorePlayerA={setScorePlayerA}
+                setScorePlayerB={setScorePlayerB}
               />
             }
           ></Route>
-             <Route
+          <Route
             path="/pokefight/fightresult"
             element={
               <Fightresult
+                playerA={playerA}
+                playerB={playerB}
+                setPlayerB={setPlayerB}
+                scorePlayerA={scorePlayerA}
+                scorePlayerB={scorePlayerB}
+                setScorePlayerA={setScorePlayerA}
+                setScorePlayerB={setScorePlayerB}
               />
             }
           ></Route>
