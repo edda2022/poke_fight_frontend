@@ -22,6 +22,7 @@
   background-color: rgba(226, 208, 178, 0.209);
   display: flex;
   flex-direction: column;
+  align-items: center;
   flex: 1;
   min-height: 88vh;
 }
@@ -37,6 +38,7 @@
   border-radius: 7px;
   border-width: 1px;
   border-color: rgba(255, 200, 0, 0.926);
+  width: 80%;
   
 }
 
@@ -64,16 +66,16 @@
   width: 900px;
 }
 
-.stats{
-  font-size: 0.75rem;
-  margin: 0px;
-  padding: 0px;
-}
 
 .backbuttondiv {
   margin-top: 100px;
   display: flex;
   justify-content: center;
+}
+
+.selectbtns{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .errorpage {
@@ -127,4 +129,20 @@ a.page-link  {
   padding: 2rem;
   display: flex;
   align-items: center;
+}
+
+/* PokemonInfo */
+
+.pokemoninfo {
+  padding: 5rem;
+}
+
+.types{
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+.pokemoninfoheading{
+  padding-bottom: 2rem;
+  font-size: 3rem;
 }

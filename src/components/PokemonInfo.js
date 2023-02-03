@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 export default function PokemonInfo({ capitalizeFirstLetter }) {
@@ -20,26 +20,17 @@ export default function PokemonInfo({ capitalizeFirstLetter }) {
 
   return (
     <div>
-      <div className="text-center">
-        Types:
+      <div className="text-center pokemoninfo">
+        <h3 className="pokemoninfoheading">{capitalizeFirstLetter(name)}'s Types</h3>
         {pokemonType.map((typ) => {
           return (
             <div key={typ.type.url}>
-              <p>{capitalizeFirstLetter(typ.type.name)}</p>
+              <p className="types">{capitalizeFirstLetter(typ.type.name)}</p>
             </div>
           );
         })}
       </div>
-      <div className="backbuttondiv">
-        <button
-          onClick={() => {
-            navigate(-1);
-          }}
-          className="btn-outline-secondary btn btn-light btn-sm pokemonbutton"
-        >
-          Go back
-        </button>
-      </div>
+ 
     </div>
   );
 }
