@@ -11,26 +11,8 @@ export default function Fightresult({
   capitalizeFirstLetter
 }) {
   const navigate = useNavigate();
-  console.log(playerA)
-  console.log(playerB)
 
-  useEffect(() => {
-    axios
-      .post('http://localhost:8082/fightresult', {
-        id_PlayerA: "1",
-        pokemon_name_playerA: `${playerA}`,
-        id_PlayerB: "3",
-        pokemon_name_playerB: `${playerB}`,
-        score_PlayerA: `${scorePlayerA}`,
-        score_PlayerB: `${scorePlayerB}`
-      })
-      .then((response) => {
-        console.log(response.data)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+console.log(scorePlayerA)
 
   const playAgain = () => {
     setPlayerB("");
@@ -45,7 +27,7 @@ export default function Fightresult({
             <p className="fightresulttext text-center" >
             {" "}
             {capitalizeFirstLetter(playerA)} has won! </p>
-           <p className="fightresulttext text-center"> Your Score: {scorePlayerA}</p>
+           <p className="fightresulttext text-center"> Your personal score in this session: {scorePlayerA}</p>
           </div>
            )}
         {playerB &&
