@@ -78,7 +78,7 @@ export default function PokeFight({
     <>
       <div className="d-flex flex-column justify-content-center align-items-center">
         <h2 className="justify-content-center align-items-center">
-          Here are the 2 Pokémons fighting against each other
+      Fight Arena - select 2 Pokémons 
         </h2>
       </div>
       <div className="pokefight">
@@ -86,7 +86,7 @@ export default function PokeFight({
           <h5 className="card-title">{capitalizeFirstLetter(playerA)}</h5>
           <img
             src={firstPokemon.sprites?.front_default}
-            className="img-fluid rounded-start"
+            className="img-fluid rounded-start pokefight-img"
             alt={capitalizeFirstLetter(playerA)}
           ></img>
           <div className="card-body">
@@ -95,40 +95,19 @@ export default function PokeFight({
               <div className="">
                 <Link to={`/pokemon`}>
                   <button className="btn-outline-secondary btn btn-warning btn-sm mb-3">
-                    Choose First Player
+                    Choose your Pokémon to fight with
                   </button>
                 </Link>
               </div>
             )}
-            <div className={`fightdetails ${playerA ? "" : "disabled"}`}>
-              <div>Height: {firstPokemon.height}</div>
-              <div>Weight: {firstPokemon.weight}</div>
-              <div>
-                Stats:{" "}
-                {firstPokemon.stats?.map((stat, index) => {
-                  return (
-                    <div key={stat.stat.url}>
-                      {capitalizeFirstLetter(stat.stat.name)}: {stat.base_stat}
-                    </div>
-                  );
-                })}
-              </div>
-              <div>
-                Types:{" "}
-                {firstPokemon.types?.map((type) => {
-                  return <div key={type.slot}>{type.type.name}</div>;
-                })}
-              </div>
-              <div className="score">score={scorePlayerA}</div>
-            </div>
-          </div>
+                      </div>
         </div>
 
         <div className="card playerB">
           <h5 className="card-title">{capitalizeFirstLetter(playerB)}</h5>
           <img
             src={secondPokemon.sprites?.front_default}
-            className="img-fluid rounded-start"
+            className="img-fluid rounded-start pokefight-img"
             alt={secondPokemon.name}
           ></img>
           <div className="card-body">
@@ -137,33 +116,13 @@ export default function PokeFight({
               <div>
                 <Link to={`/pokemon`}>
                   <button className="btn-outline-secondary btn btn-warning btn-sm">
-                    Choose Second Player
+                  Choose the Pokémon to fight against
                   </button>
                 </Link>
               </div>
             )}
           </div>
-          <div className={`fightdetails ${playerA ? "" : "disabled"}`}>
-            <div>Height: {secondPokemon.height}</div>
-            <div>Weight: {secondPokemon.weight}</div>
-            <div>
-              Stats:{" "}
-              {secondPokemon.stats?.map((stat, index) => {
-                return (
-                  <div key={stat.stat.url}>
-                    {capitalizeFirstLetter(stat.stat.name)}: {stat.base_stat}
-                  </div>
-                );
-              })}
-            </div>
-            <div>
-              Types:{" "}
-              {secondPokemon.types?.map((type) => {
-                return <div key={type.slot}>{type.type.name}</div>;
-              })}
-            </div>
-            <div className="score">score={scorePlayerB}</div>
-          </div>
+         
         </div>
       </div>
       <div className="buttongroupfight">
@@ -179,7 +138,7 @@ export default function PokeFight({
           className="btn-outline-secondary btn btn-light btn-sm playagainbutton"
           onClick={resetGameBtn}
         >
-          Reset both Players
+          Reset both Pokémons
         </button>
       </div>
     </>

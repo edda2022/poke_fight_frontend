@@ -59,18 +59,16 @@ export default function PokemonPage({
             <img
               src={pokemonDetail.sprites.front_default}
               className="img-fluid rounded-start pokepicPokepage"
-              alt={capitalizeFirstLetter(name)}
+              alt={`Picture of ${capitalizeFirstLetter(name)}`}
             ></img>
           </div>
           <div className="col-md-4">
             <div className="card-body">
-              <table class="table">
+              <table className="table">
                 <thead>
                   <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">
-                      {capitalizeFirstLetter(pokemonDetail.name)}
-                    </th>
+                    <th scope="col">{capitalizeFirstLetter(pokemonDetail.name)}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -86,17 +84,26 @@ export default function PokemonPage({
                     <th scope="row">Weight</th>
                     <td>{pokemonDetail.weight}</td>
                   </tr>
+                </tbody>
+              </table>
+              <br></br>
+              <br></br>
+              <table className="table">
+                <thead>
                   <tr>
-                    <th scope="row"></th>
-                    <td></td>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                   </tr>
-                  <tr>
-                    <th scope="row">Statistics:</th>
+                </thead>
+                <tbody>
+                  {/* <tr>
+                    <th scope="row">Statistics</th>
                     <td></td>
-                  </tr>
+                  </tr> */}
+                  
                   {pokemonDetail.stats?.map((stat, index) => {
                     return (
-                      <tr>
+                      <tr key={stat.stat.name}>
                         <th scope="row">
                           {capitalizeFirstLetter(stat.stat.name)}
                         </th>
@@ -126,11 +133,11 @@ export default function PokemonPage({
                       viewBox="0 0 16 16"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"
                       />
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
                       />
                     </svg>
@@ -160,8 +167,7 @@ export default function PokemonPage({
                       onClick={clickPlayerB}
                       value={pokemonDetail.name}
                     >
-                      Select {capitalizeFirstLetter(pokemonDetail.name)} for
-                      fight player 2
+                      Select {capitalizeFirstLetter(pokemonDetail.name)} to fight against
                     </button>
                   </Link>
                 </div>

@@ -15,8 +15,8 @@ export default function Pagination ({setPokemons, totalCount}) {
     .get(`http://localhost:8082/pokemon?offset=${offset}&limit=20`)
     .then((response) => {
         setPokemons(response.data.results)
-        console.log(response.data.results) // pagination: response.data.results = items
-        console.log(offset)
+        // console.log(response.data.results) // pagination: response.data.results = items
+        // console.log(offset)
 
     })
     .catch((err) => {
@@ -25,9 +25,9 @@ export default function Pagination ({setPokemons, totalCount}) {
    }
 
     const handlePageClick = (data) => {
-        console.log(data.selected) // prints the page -1 
+        // console.log(data.selected) // prints the page -1 
         let offset = (data.selected) * 20 // offset = 20 -> multiple page number = new offset
-        console.log(offset)
+        // console.log(offset)
         fetchNewPage(offset)
     }
 

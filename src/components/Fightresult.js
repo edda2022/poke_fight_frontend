@@ -5,6 +5,7 @@ export default function Fightresult({
   setPlayerB,
   scorePlayerA,
   scorePlayerB,
+  capitalizeFirstLetter
 }) {
   const navigate = useNavigate();
 
@@ -15,23 +16,27 @@ export default function Fightresult({
 
   return (
     <>
-      <div>
-        {playerA && (
-          <div>
+      <div className="fightresult">
+        <div>{playerA && (
+          <div >
+            <p className="fightresulttext text-center" >
             {" "}
-            {playerA} has won! Your Score:{scorePlayerA}
+            {capitalizeFirstLetter(playerA)} has won! </p>
+           <p className="fightresulttext text-center"> Your Score: {scorePlayerA}</p>
           </div>
-        )}
-        {playerB && <div> GAME OVER! {playerB} has won!</div>}
-        <div>
-          <button
-            className="btn-outline-secondary btn btn-light btn-sm playagainbutton"
-            onClick={playAgain}
-          >
-            Play Again!
-          </button>
+           )}
+        {playerB &&
+         <p className="fightresulttext"> GAME OVER! {capitalizeFirstLetter(playerB)} has won!</p>}
         </div>
       </div>
+      <div>
+          <button
+            className="btn btn-m btn-secondary btn-outline-warning selectbtns"
+            onClick={playAgain}
+          >
+            Play again!
+          </button>
+        </div>
     </>
   );
 }
