@@ -12,7 +12,6 @@ export default function Fightresult({
 }) {
   const navigate = useNavigate();
 
-console.log(scorePlayerA)
 
   const playAgain = () => {
     setPlayerB("");
