@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import Fightresult from "./Fightresult";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function PokeFight({
   capitalizeFirstLetter,
@@ -53,11 +52,37 @@ export default function PokeFight({
     if (playerA && playerB) {
       if (firstPokemon.weight > secondPokemon.weight) {
         setScorePlayerA(scorePlayerA + 1);
-        // setPlayerB("");
+        setPlayerB("");
+        axios.post('http://localhost:8082/fightresult', {
+          id_PlayerA: `${firstPokemon.id}`,
+          pokemon_name_playerA: `${firstPokemon.name}`,
+          id_PlayerB: `${secondPokemon.id}`,
+          pokemon_name_playerB: `${secondPokemon.name}`,
+          score_PlayerA: 1,
+          score_PlayerB: 0
+        })
+        .then((response) => {
+        })
+        .catch((err) => {
+          console.log(err);
+        });
         navigate("/pokefight/fightresult");
       } else if (firstPokemon.weight < secondPokemon.weight) {
         setScorePlayerB(scorePlayerB + 1);
-        // setPlayerA("");
+        setPlayerA("");
+        axios.post('http://localhost:8082/fightresult', {
+          id_PlayerA: `${firstPokemon.id}`,
+          pokemon_name_playerA: `${firstPokemon.name}`,
+          id_PlayerB: `${secondPokemon.id}`,
+          pokemon_name_playerB: `${secondPokemon.name}`,
+          score_PlayerA: 0,
+          score_PlayerB: 1
+        })
+        .then((response) => {
+        })
+        .catch((err) => {
+          console.log(err);
+        });
         navigate("/pokefight/fightresult");
       } else {
         alert("no one won");
@@ -65,7 +90,10 @@ export default function PokeFight({
       }
     } else {
       alert("Please choose 2 Pokemons");
-    }
+    };
+
+   
+
   };
   const resetGameBtn = () => {
     setFirstPokemon("");
