@@ -48,41 +48,43 @@ export default function PokeFight({
       });
   }, []);
 
+  const randomIndex = () => {
+    Math.floor(Math.random() * 6); 
+ }
+  
+
   const fight = () => {
+      // random field to compare in Stats
+    const randomIndex = (i) => {return Math.floor(Math.random() * 6);}
+    const index = randomIndex();
+  
     if (playerA && playerB) {
-      if (firstPokemon.weight > secondPokemon.weight) {
+      if (firstPokemon.stats[index].base_stat > secondPokemon.stats[index].base_stat) {
+        
         setScorePlayerA(scorePlayerA + 1);
+        if (scorePlayerA === 2) {
+          axios.post('http://localhost:8082/fightresult', {
+            id_PlayerA: `${firstPokemon.id}`,
+            pokemon_name_playerA: `${firstPokemon.name}`,
+            score_PlayerA: 3,
+          })
+          .then((response) => {
+            console.log(response.data)
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        } else {
+          console.log('nothing to put in db, no 3 points')
+        }
+       
         setPlayerB("");
-        axios.post('http://localhost:8082/fightresult', {
-          id_PlayerA: `${firstPokemon.id}`,
-          pokemon_name_playerA: `${firstPokemon.name}`,
-          id_PlayerB: `${secondPokemon.id}`,
-          pokemon_name_playerB: `${secondPokemon.name}`,
-          score_PlayerA: 1,
-          score_PlayerB: 0
-        })
-        .then((response) => {
-        })
-        .catch((err) => {
-          console.log(err);
-        });
         navigate("/pokefight/fightresult");
-      } else if (firstPokemon.weight < secondPokemon.weight) {
+      } else if (firstPokemon.stats[index].base_stat < secondPokemon.stats[index].base_stat) {
+
+
         setScorePlayerB(scorePlayerB + 1);
         setPlayerA("");
-        axios.post('http://localhost:8082/fightresult', {
-          id_PlayerA: `${firstPokemon.id}`,
-          pokemon_name_playerA: `${firstPokemon.name}`,
-          id_PlayerB: `${secondPokemon.id}`,
-          pokemon_name_playerB: `${secondPokemon.name}`,
-          score_PlayerA: 0,
-          score_PlayerB: 1
-        })
-        .then((response) => {
-        })
-        .catch((err) => {
-          console.log(err);
-        });
         navigate("/pokefight/fightresult");
       } else {
         alert("no one won");
@@ -92,7 +94,7 @@ export default function PokeFight({
       alert("Please choose 2 Pokemons");
     };
 
-   
+
 
   };
   const resetGameBtn = () => {

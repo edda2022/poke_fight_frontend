@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, Link, useNavigate, NavLink } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import PokemonList from "./components/PokemonList";
 import PokemonPage from "./components/PokemonPage";
 import Homepage from "./components/Homepage";
@@ -9,8 +9,8 @@ import Header from "./components/Header";
 import PokemonInfo from "./components/PokemonInfo";
 import PokeFight from "./components/PokeFight";
 import Fightresult from "./components/Fightresult";
-import Navbar from "./components/Navbar"
 import { useState } from "react";
+import Leaderboard from "./components/Leaderboard";
 
 function App() {
   const [playerA, setPlayerA] = useState("");
@@ -52,6 +52,7 @@ function App() {
               <PokemonInfo capitalizeFirstLetter={capitalizeFirstLetter} />
             }
           ></Route>
+          <Route path="/leaderboard" element={<Leaderboard />}></Route>
           <Route
             path="/pokefight"
             element={
@@ -80,7 +81,6 @@ function App() {
                 setScorePlayerA={setScorePlayerA}
                 setScorePlayerB={setScorePlayerB}
                 capitalizeFirstLetter={capitalizeFirstLetter}
-
               />
             }
           ></Route>
