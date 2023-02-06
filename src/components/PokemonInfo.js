@@ -21,7 +21,9 @@ export default function PokemonInfo({ capitalizeFirstLetter }) {
   return (
     <div>
       <div className="text-center pokemoninfo">
-        <h3 className="pokemoninfoheading">{capitalizeFirstLetter(name)}'s Types</h3>
+        <h3 className="pokemoninfoheading">
+          {capitalizeFirstLetter(name)}'s Types
+        </h3>
         {pokemonType.map((typ) => {
           return (
             <div key={typ.type.url}>
@@ -30,7 +32,6 @@ export default function PokemonInfo({ capitalizeFirstLetter }) {
           );
         })}
       </div>
- 
     </div>
   );
 }

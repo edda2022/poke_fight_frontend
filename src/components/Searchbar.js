@@ -10,7 +10,7 @@ export default function Searchbar({
           className="form-control bg-light"
           type="text"
           required
-          placeholder="Search for a Pokemon name or ID"
+          placeholder="Search for a Pokémon name or ID"
           onChange={handleOnChange}
           value={inputSearch}
         ></input>

@@ -79,6 +79,8 @@ function App() {
                 scorePlayerB={scorePlayerB}
                 setScorePlayerA={setScorePlayerA}
                 setScorePlayerB={setScorePlayerB}
+                capitalizeFirstLetter={capitalizeFirstLetter}
+
               />
             }
           ></Route>
