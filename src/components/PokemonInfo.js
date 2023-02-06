@@ -5,7 +5,6 @@ import axios from "axios";
 export default function PokemonInfo({ capitalizeFirstLetter }) {
   const [pokemonType, setPokemonType] = useState([]);
   const { name } = useParams();
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios

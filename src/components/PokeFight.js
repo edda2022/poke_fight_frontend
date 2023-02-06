@@ -53,11 +53,11 @@ export default function PokeFight({
     if (playerA && playerB) {
       if (firstPokemon.weight > secondPokemon.weight) {
         setScorePlayerA(scorePlayerA + 1);
-        setPlayerB("");
+        // setPlayerB("");
         navigate("/pokefight/fightresult");
       } else if (firstPokemon.weight < secondPokemon.weight) {
         setScorePlayerB(scorePlayerB + 1);
-        setPlayerA("");
+        // setPlayerA("");
         navigate("/pokefight/fightresult");
       } else {
         alert("no one won");

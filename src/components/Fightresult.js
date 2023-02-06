@@ -1,4 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
+
 export default function Fightresult({
   playerA,
   playerB,
@@ -8,6 +11,26 @@ export default function Fightresult({
   capitalizeFirstLetter
 }) {
   const navigate = useNavigate();
+  console.log(playerA)
+  console.log(playerB)
+
+  useEffect(() => {
+    axios
+      .post('http://localhost:8082/fightresult', {
+        id_PlayerA: "1",
+        pokemon_name_playerA: `${playerA}`,
+        id_PlayerB: "3",
+        pokemon_name_playerB: `${playerB}`,
+        score_PlayerA: `${scorePlayerA}`,
+        score_PlayerB: `${scorePlayerB}`
+      })
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const playAgain = () => {
     setPlayerB("");
