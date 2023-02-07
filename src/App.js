@@ -11,7 +11,7 @@ import PokeFight from "./components/PokeFight";
 import Fightresult from "./components/Fightresult";
 import { useState } from "react";
 import Leaderboard from "./components/Leaderboard";
-
+import Navbar from "./components/Navbar";
 function App() {
   const [playerA, setPlayerA] = useState("");
   const [playerB, setPlayerB] = useState("");
@@ -24,7 +24,8 @@ function App() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
+      <Navbar />
       <div className="main">
         <Routes>
           <Route path="/" element={<Homepage />}></Route>
@@ -76,6 +77,7 @@ function App() {
                 playerA={playerA}
                 playerB={playerB}
                 setPlayerB={setPlayerB}
+                setPlayerA={setPlayerA}
                 scorePlayerA={scorePlayerA}
                 scorePlayerB={scorePlayerB}
                 setScorePlayerA={setScorePlayerA}

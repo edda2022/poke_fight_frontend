@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-
 export default function Leaderboard({capitalizeFirstLetter}) {
+
   const [results, setResults] = useState([]);
 
   useEffect(() => {
     axios
       .get(`http://localhost:8082/fightresult`)
       .then((response) => {
+        console.log(response.data);
         setResults(response.data);
       })
       .catch((err) => {
@@ -45,6 +45,7 @@ export default function Leaderboard({capitalizeFirstLetter}) {
             </tbody>
           </table>
         </div>
+     
       </div>
     </>
   );
