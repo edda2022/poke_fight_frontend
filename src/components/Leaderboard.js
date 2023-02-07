@@ -8,7 +8,6 @@ export default function Leaderboard({capitalizeFirstLetter}) {
     axios
       .get(`http://localhost:8082/fightresult`)
       .then((response) => {
-        console.log(response.data);
         setResults(response.data);
       })
       .catch((err) => {
@@ -19,7 +18,7 @@ export default function Leaderboard({capitalizeFirstLetter}) {
   return (
     <>
       <div className="errorpage d-flex flex-column justify-content-center align-items-center">
-        <h1>Here are the results of the last games:</h1>
+        <h1>Here are the results of the last games</h1>
         <div>
           <table className="table leaderboard_table">
             <thead>
