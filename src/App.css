@@ -160,5 +160,14 @@ a.page-link  {
 .fightresulttext{
   font-size: 2rem;
   font-weight: 700;
+}
 
+/* Leaderboard */
+.leaderboard_table {
+  margin-top: 3rem;
+}
+
+.leaderboard_table_head{
+  color: rgba(89, 87, 87, 0.849);
+  font-size: 1.3rem;
 }

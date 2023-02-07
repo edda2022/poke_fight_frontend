@@ -68,7 +68,8 @@ export default function PokemonPage({
                 <thead>
                   <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">{capitalizeFirstLetter(pokemonDetail.name)}</th>
+                    <th scope="col">
+                      {capitalizeFirstLetter(pokemonDetail.name)}</th>
                   </tr>
                 </thead>
                 <tbody>

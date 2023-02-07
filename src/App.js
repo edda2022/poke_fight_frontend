@@ -52,7 +52,7 @@ function App() {
               <PokemonInfo capitalizeFirstLetter={capitalizeFirstLetter} />
             }
           ></Route>
-          <Route path="/leaderboard" element={<Leaderboard />}></Route>
+          <Route path="/leaderboard" element={<Leaderboard capitalizeFirstLetter={capitalizeFirstLetter}/>}></Route>
           <Route
             path="/pokefight"
             element={
