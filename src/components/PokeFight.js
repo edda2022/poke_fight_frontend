@@ -36,7 +36,7 @@ export default function PokeFight({
         console.log(err);
       });
   }, []);
-
+  // console.log(firstPokemon);
   useEffect(() => {
     axios
       .get(`http://localhost:8082/pokemon/${playerB}`)
@@ -49,40 +49,45 @@ export default function PokeFight({
   }, []);
 
   const randomIndex = () => {
-    Math.floor(Math.random() * 6); 
- }
-  
+    Math.floor(Math.random() * 6);
+  };
 
   const fight = () => {
-      // random field to compare in Stats
-    const randomIndex = (i) => {return Math.floor(Math.random() * 6);}
+    // random field to compare in Stats
+    const randomIndex = (i) => {
+      return Math.floor(Math.random() * 6);
+    };
     const index = randomIndex();
-  
+    console.log(firstPokemon.stats[index].base_stat);
     if (playerA && playerB) {
-      if (firstPokemon.stats[index].base_stat > secondPokemon.stats[index].base_stat) {
-        
+      if (
+        firstPokemon.stats[index].base_stat >
+        secondPokemon.stats[index].base_stat
+      ) {
         setScorePlayerA(scorePlayerA + 1);
         if (scorePlayerA === 2) {
-          axios.post('http://localhost:8082/fightresult', {
-            id_PlayerA: `${firstPokemon.id}`,
-            pokemon_name_playerA: `${firstPokemon.name}`,
-            score_PlayerA: 3,
-          })
-          .then((response) => {
-            console.log(response.data)
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+          axios
+            .post("http://localhost:8082/fightresult", {
+              id_PlayerA: `${firstPokemon.id}`,
+              pokemon_name_playerA: `${firstPokemon.name}`,
+              score_PlayerA: 3,
+            })
+            .then((response) => {
+              console.log(response.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         } else {
-          console.log('nothing to put in db, no 3 points')
+          console.log("nothing to put in db, no 3 points");
         }
-       
+
         setPlayerB("");
         navigate("/pokefight/fightresult");
-      } else if (firstPokemon.stats[index].base_stat < secondPokemon.stats[index].base_stat) {
-
-
+      } else if (
+        firstPokemon.stats[index].base_stat <
+        secondPokemon.stats[index].base_stat
+      ) {
         setScorePlayerB(scorePlayerB + 1);
         setPlayerA("");
         navigate("/pokefight/fightresult");
@@ -92,10 +97,7 @@ export default function PokeFight({
       }
     } else {
       alert("Please choose 2 Pokemons");
-    };
-
-
-
+    }
   };
   const resetGameBtn = () => {
     setFirstPokemon("");
@@ -106,9 +108,9 @@ export default function PokeFight({
 
   return (
     <>
-      <div className="d-flex flex-column justify-content-center align-items-center">
+      <div className="d-flex flex-column justify-content-center align-items-center mt-5">
         <h2 className="justify-content-center align-items-center">
-      Fight Arena - select 2 Pokémons 
+          Fight Arena - select 2 Pokémons
         </h2>
       </div>
       <div className="pokefight">
@@ -130,7 +132,7 @@ export default function PokeFight({
                 </Link>
               </div>
             )}
-                      </div>
+          </div>
         </div>
 
         <div className="card playerB">
@@ -146,13 +148,12 @@ export default function PokeFight({
               <div>
                 <Link to={`/pokemon`}>
                   <button className="btn-outline-secondary btn btn-warning btn-sm">
-                  Choose the Pokémon to fight against
+                    Choose the Pokémon to fight against
                   </button>
                 </Link>
               </div>
             )}
           </div>
-         
         </div>
       </div>
       <div className="buttongroupfight">

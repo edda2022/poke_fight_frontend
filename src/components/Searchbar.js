@@ -5,7 +5,7 @@ export default function Searchbar({
 }) {
   return (
     <div>
-      <form onSubmit={handleSearch} className="search-bar">
+      <form onSubmit={handleSearch} className="search-bar mt-5">
         <input
           className="form-control bg-light"
           type="text"

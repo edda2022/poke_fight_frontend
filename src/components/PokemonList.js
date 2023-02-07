@@ -60,21 +60,24 @@ export default function PokemonList({ capitalizeFirstLetter }) {
           handleSearch={handleSearch}
         />
       </div>
+
       <>
         {errorSearch ? (
           <Error />
         ) : (
           <>
-            <div className="pokemons">
-              {pokemons?.map((pokemon) => {
-                return (
-                  <Pokemon
-                    key={pokemon.name}
-                    pokemon={pokemon}
-                    capitalizeFirstLetter={capitalizeFirstLetter}
-                  />
-                );
-              })}
+            <div className="container">
+              <div className="row gap-4 my-5">
+                {pokemons?.map((pokemon) => {
+                  return (
+                    <Pokemon
+                      key={pokemon.name}
+                      pokemon={pokemon}
+                      capitalizeFirstLetter={capitalizeFirstLetter}
+                    />
+                  );
+                })}
+              </div>
             </div>
             <div>
               <Pagination
