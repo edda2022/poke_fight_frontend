@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Collapse from 'react-bootstrap/Collapse';
 
 export default function PokeFight({
   capitalizeFirstLetter,
@@ -23,6 +25,8 @@ export default function PokeFight({
       front_default: "",
     },
   });
+  const [open, setOpen] = useState(false);
+
 
   const navigate = useNavigate();
 
@@ -113,6 +117,33 @@ export default function PokeFight({
           Fight Arena - select 2 Pokémons
         </h2>
       </div>
+
+      <div className="gamedescription">
+      <Button
+        onClick={() => setOpen(!open)}
+        aria-controls="pokefight-description"
+        aria-expanded={open}
+        className="btn-outline-secondary btn btn-light btn-sm playagainbutton"
+      >
+        How to play
+      </Button>
+      <Collapse in={open}>
+        <div id="pokefight-description">
+        <p>
+            1. Choose your favorite Pokémon as the active player <br></br>
+            2. Choose the Pokémon to fight against <br></br>
+            3. Fight! <br></br>
+          </p>
+          <p>
+            The algorithm will decide about the stat used for the battle.{" "}
+            <br></br>
+            The higher stat wins. <br></br>
+            So, choose your active Pokémon wisely.
+          </p>
+        </div>
+      </Collapse>
+    </div>
+
       <div className="pokefight">
         <div className="card playerA">
           <h5 className="card-title">{capitalizeFirstLetter(playerA)}</h5>
