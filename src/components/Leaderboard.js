@@ -17,8 +17,8 @@ export default function Leaderboard({capitalizeFirstLetter}) {
 
   return (
     <>
-      <div className="errorpage d-flex flex-column justify-content-center align-items-center">
-        <h1>Here are the results of the last games</h1>
+      <div className="d-flex flex-column justify-content-center align-items-center mt-5 mb-2">
+        <h1>Results of the last games</h1>
         <div>
           <table className="table leaderboard_table">
             <thead>
