@@ -138,7 +138,10 @@ export default function PokeFight({
             The algorithm will decide about the stat used for the battle.{" "}
             <br></br>
             The higher stat wins. <br></br>
-            So, choose your active Pokémon wisely.
+            So, choose your active Pokémon wisely.<br></br>
+            <br></br>
+            If you win 3 battles in a row, you won the game.<br></br>
+            If you loose a battle, you loose the game.<br></br> 
           </p>
         </div>
       </Collapse>
