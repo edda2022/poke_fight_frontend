@@ -22,7 +22,7 @@ export default function PokemonPage({
 
   useEffect(() => {
     axios
-      .get(`https://poke-fight.onrender.com/pokemon/${name}`)
+      .get(`https://backend-heci.onrender.com/pokemon/${name}`)
       .then((response) => {
         setPokemonDetail(response.data);
       })

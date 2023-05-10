@@ -31,7 +31,7 @@ export default function PokeFight({
 
   useEffect(() => {
     axios
-      .get(`https://poke-fight.onrender.com/pokemon/${playerA}`)
+      .get(`https://backend-heci.onrender.com/pokemon/${playerA}`)
       .then((response) => {
         setFirstPokemon(response.data);
       })
@@ -42,7 +42,7 @@ export default function PokeFight({
   // console.log(firstPokemon);
   useEffect(() => {
     axios
-      .get(`https://poke-fight.onrender.com/pokemon/${playerB}`)
+      .get(`https://backend-heci.onrender.com/pokemon/${playerB}`)
       .then((response) => {
         setSecondPokemon(response.data);
       })
@@ -70,7 +70,7 @@ export default function PokeFight({
         setScorePlayerA(scorePlayerA + 1);
         if (scorePlayerA === 2) {
           axios
-            .post("https://poke-fight.onrender.com/fightresult", {
+            .post("https://backend-heci.onrender.com/fightresult", {
               id_PlayerA: `${firstPokemon.id}`,
               pokemon_name_playerA: `${firstPokemon.name}`,
               score_PlayerA: 3,

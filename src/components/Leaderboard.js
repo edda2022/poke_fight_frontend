@@ -6,7 +6,7 @@ export default function Leaderboard({ capitalizeFirstLetter }) {
   useEffect(() => {
     axios
       // .get(`http://localhost:8082/fightresult`)
-      .get(`https://poke-fight.onrender.com/fightresult`)
+      .get(`https://backend-heci.onrender.com/fightresult`)
       .then((response) => {
         setResults(response.data);
       })
