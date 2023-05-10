@@ -8,7 +8,7 @@ export default function PokemonInfo({ capitalizeFirstLetter }) {
 
   useEffect(() => {
     axios
-      .get(`https://poke-fight.onrender.com/pokemon/${name}/types`)
+      .get(`https://backend-heci.onrender.com/pokemon/${name}/types`)
       .then((response) => {
         setPokemonType(response.data);
       })

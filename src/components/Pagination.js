@@ -12,7 +12,7 @@ export default function Pagination({ setPokemons, totalCount }) {
   const fetchNewPage = (offset) => {
     axios
       // .get(`http://localhost:8082/pokemon?offset=${offset}&limit=20`)
-      .get(`https://poke-fight.onrender.com/pokemon?offset=${offset}&limit=20`)
+      .get(`https://backend-heci.onrender.com/pokemon?offset=${offset}&limit=20`)
       .then((response) => {
         setPokemons(response.data.results);
         // console.log(response.data.results) // pagination: response.data.results = items
