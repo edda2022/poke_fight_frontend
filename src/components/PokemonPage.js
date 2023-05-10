@@ -22,7 +22,7 @@ export default function PokemonPage({
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8082/pokemon/${name}`)
+      .get(`https://poke-fight.onrender.com/pokemon/${name}`)
       .then((response) => {
         setPokemonDetail(response.data);
       })
@@ -69,7 +69,8 @@ export default function PokemonPage({
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">
-                      {capitalizeFirstLetter(pokemonDetail.name)}</th>
+                      {capitalizeFirstLetter(pokemonDetail.name)}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -101,7 +102,7 @@ export default function PokemonPage({
                     <th scope="row">Statistics</th>
                     <td></td>
                   </tr> */}
-                  
+
                   {pokemonDetail.stats?.map((stat, index) => {
                     return (
                       <tr key={stat.stat.name}>
@@ -168,7 +169,8 @@ export default function PokemonPage({
                       onClick={clickPlayerB}
                       value={pokemonDetail.name}
                     >
-                      Select {capitalizeFirstLetter(pokemonDetail.name)} to fight against
+                      Select {capitalizeFirstLetter(pokemonDetail.name)} to
+                      fight against
                     </button>
                   </Link>
                 </div>

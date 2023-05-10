@@ -30,7 +30,7 @@ export default function Fightresult({
 
   return (
     <>
-      <div className="fightresult">
+      <div className="fightresult mt-5">
         <div>
           {playerA && (
             <div>
@@ -63,7 +63,7 @@ export default function Fightresult({
           )}
         </div>
         <div>
-          {scorePlayerA >= 3 && (
+          {scorePlayerA > 3 && (
             <button
               className="btn btn-m btn-secondary btn-outline-warning selectbtns text-center"
               onClick={newGame}
