@@ -17,7 +17,7 @@ export default function PokemonList({ capitalizeFirstLetter }) {
   // rendering the PokemonList once when loading
   useEffect(() => {
     axios
-      .get("http://localhost:8082/pokemon")
+      .get("https://poke-fight.onrender.com/pokemon")
       .then((response) => {
         setPokemons(response.data.results);
         setTotalCount(response.data.count); // total number of Pokemons in that API for pageCount Pagination
@@ -36,7 +36,7 @@ export default function PokemonList({ capitalizeFirstLetter }) {
   const handleSearch = (e) => {
     e.preventDefault();
     axios
-      .get(`http://localhost:8082/pokemon/${inputSearch}`)
+      .get(`https://poke-fight.onrender.com/pokemon/${inputSearch}`)
       .then((response) => {
         navigate(`/pokemon/${inputSearch}`);
         // setSearchPokemons(response.data) nnc anymore due to 'navigate'

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import Collapse from 'react-bootstrap/Collapse';
+import Button from "react-bootstrap/Button";
+import Collapse from "react-bootstrap/Collapse";
 
 export default function PokeFight({
   capitalizeFirstLetter,
@@ -27,12 +27,11 @@ export default function PokeFight({
   });
   const [open, setOpen] = useState(false);
 
-
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8082/pokemon/${playerA}`)
+      .get(`https://poke-fight.onrender.com/pokemon/${playerA}`)
       .then((response) => {
         setFirstPokemon(response.data);
       })
@@ -43,7 +42,7 @@ export default function PokeFight({
   // console.log(firstPokemon);
   useEffect(() => {
     axios
-      .get(`http://localhost:8082/pokemon/${playerB}`)
+      .get(`https://poke-fight.onrender.com/pokemon/${playerB}`)
       .then((response) => {
         setSecondPokemon(response.data);
       })
@@ -71,7 +70,7 @@ export default function PokeFight({
         setScorePlayerA(scorePlayerA + 1);
         if (scorePlayerA === 2) {
           axios
-            .post("http://localhost:8082/fightresult", {
+            .post("https://poke-fight.onrender.com/fightresult", {
               id_PlayerA: `${firstPokemon.id}`,
               pokemon_name_playerA: `${firstPokemon.name}`,
               score_PlayerA: 3,
@@ -119,33 +118,33 @@ export default function PokeFight({
       </div>
 
       <div className="gamedescription">
-      <Button
-        onClick={() => setOpen(!open)}
-        aria-controls="pokefight-description"
-        aria-expanded={open}
-        className="btn-outline-secondary btn btn-light btn-sm playagainbutton"
-      >
-        How to play
-      </Button>
-      <Collapse in={open}>
-        <div id="pokefight-description">
-        <p>
-            1. Choose your favorite Pokémon as the active player <br></br>
-            2. Choose the Pokémon to fight against <br></br>
-            3. Fight! <br></br>
-          </p>
-          <p>
-            The algorithm will decide about the stat used for the battle.{" "}
-            <br></br>
-            The higher stat wins. <br></br>
-            So, choose your active Pokémon wisely.<br></br>
-            <br></br>
-            If you win 3 battles in a row, you won the game.<br></br>
-            If you loose a battle, you loose the game.<br></br> 
-          </p>
-        </div>
-      </Collapse>
-    </div>
+        <Button
+          onClick={() => setOpen(!open)}
+          aria-controls="pokefight-description"
+          aria-expanded={open}
+          className="btn-outline-secondary btn btn-light btn-sm playagainbutton"
+        >
+          How to play
+        </Button>
+        <Collapse in={open}>
+          <div id="pokefight-description">
+            <p>
+              1. Choose your favorite Pokémon as the active player <br></br>
+              2. Choose the Pokémon to fight against <br></br>
+              3. Fight! <br></br>
+            </p>
+            <p>
+              The algorithm will decide about the stat used for the battle.{" "}
+              <br></br>
+              The higher stat wins. <br></br>
+              So, choose your active Pokémon wisely.<br></br>
+              <br></br>
+              If you win 3 battles in a row, you won the game.<br></br>
+              If you loose a battle, you loose the game.<br></br>
+            </p>
+          </div>
+        </Collapse>
+      </div>
 
       <div className="pokefight">
         <div className="card playerA">
